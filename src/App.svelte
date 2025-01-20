@@ -1,74 +1,37 @@
+<svelte:options customElement="demo-form" />
+
 <script lang="ts">
+  import "medblocks-ui";
+  import "medblocks-ui/dist/styles";
 </script>
 
 <main>
-<h1>Hello world!</h1>
+  <mb-context path="mini-encounter-test-1/context/start_time"></mb-context>
+  <mb-context path="mini-encounter-test-1/context/setting"></mb-context>
+  <div
+    style="display: flex; column-gap: 0.5rem;"
+  >
+    <p
+      style="margin-top: auto; margin-bottom: auto; ">
+      Diagnosis
+    </p>
+    <mb-input
+      id="text_field"
+      path="mini-encounter-test-1/problem_diagnosis/problem_diagnosis_name"
+    ></mb-input>
+  </div>
+
+  <mb-context path="mini-encounter-test-1/problem_diagnosis/language"
+  ></mb-context>
+  <mb-context path="mini-encounter-test-1/problem_diagnosis/encoding"
+  ></mb-context>
+  <mb-context path="mini-encounter-test-1/problem_diagnosis/subject"
+  ></mb-context>
+  <mb-context path="mini-encounter-test-1/category"></mb-context>
+  <mb-context path="mini-encounter-test-1/language"></mb-context>
+  <mb-context path="mini-encounter-test-1/territory"></mb-context>
+  <mb-context path="mini-encounter-test-1/composer"></mb-context>
 </main>
 
 <style>
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-.card {
-  padding: 2em;
-}
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 </style>
