@@ -23,9 +23,9 @@ export default defineConfig(({ mode }) => {
       outDir: "dist",
       minify: true,
       rollupOptions: {
-        input: input,
+        input: "src/dev.ts",
         output: {
-          entryFileNames: component === "form" ? "index.js": "ro/index.js",
+          entryFileNames: "index.js",
           format: "iife",
         },
         external: ["medblocks-ui", "medblocks-ui/dist/styles"],

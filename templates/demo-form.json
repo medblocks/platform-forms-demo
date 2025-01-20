@@ -1,19 +1,19 @@
 {
-	"templateId" : "mini-encounter-test-1",
-	"semVer" : "1.2.0",
+	"templateId" : "demo-encounter",
+	"semVer" : "2.2.0",
 	"version" : "2.3",
 	"defaultLanguage" : "en",
 	"languages" : [ "en" ],
 	"tree" : {
-	  "id" : "mini-encounter-test-1",
-	  "name" : "mini-encounter-test-1",
-	  "localizedName" : "mini-encounter-test-1",
+	  "id" : "demo-encounter",
+	  "name" : "demo-encounter",
+	  "localizedName" : "demo-encounter",
 	  "rmType" : "COMPOSITION",
 	  "nodeId" : "openEHR-EHR-COMPOSITION.encounter.v1",
 	  "min" : 1,
 	  "max" : 1,
 	  "localizedNames" : {
-		"en" : "mini-encounter-test-1"
+		"en" : "demo-encounter"
 	  },
 	  "localizedDescriptions" : {
 		"en" : "Interaction, contact or care event between a subject of care and healthcare provider(s)."
@@ -96,7 +96,7 @@
 		  "id" : "body_site",
 		  "name" : "Body site",
 		  "localizedName" : "Body site",
-		  "rmType" : "DV_TEXT",
+		  "rmType" : "DV_CODED_TEXT",
 		  "nodeId" : "at0012",
 		  "min" : 0,
 		  "max" : 1,
@@ -111,7 +111,52 @@
 		  },
 		  "aqlPath" : "/content[openEHR-EHR-EVALUATION.problem_diagnosis.v1]/data[at0001]/items[at0012]/value",
 		  "inputs" : [ {
-			"type" : "TEXT"
+			"suffix" : "code",
+			"type" : "CODED_TEXT",
+			"list" : [ {
+			  "value" : "Head",
+			  "label" : "Head",
+			  "localizedLabels" : {
+				"en" : "Head"
+			  }
+			}, {
+			  "value" : "Torso",
+			  "label" : "Torso",
+			  "localizedLabels" : {
+				"en" : "Torso"
+			  }
+			}, {
+			  "value" : "Left Arm",
+			  "label" : "Left Arm",
+			  "localizedLabels" : {
+				"en" : "Left Arm"
+			  }
+			}, {
+			  "value" : "Right Arm",
+			  "label" : "Right Arm",
+			  "localizedLabels" : {
+				"en" : "Right Arm"
+			  }
+			}, {
+			  "value" : "Abdomen",
+			  "label" : "Abdomen",
+			  "localizedLabels" : {
+				"en" : "Abdomen"
+			  }
+			}, {
+			  "value" : "Left Leg",
+			  "label" : "Left Leg",
+			  "localizedLabels" : {
+				"en" : "Left Leg"
+			  }
+			}, {
+			  "value" : "Right Leg",
+			  "label" : "Right Leg",
+			  "localizedLabels" : {
+				"en" : "Right Leg"
+			  }
+			} ],
+			"terminology" : "local_terms"
 		  } ]
 		}, {
 		  "id" : "language",

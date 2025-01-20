@@ -1,36 +1,27 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<svelte:options customElement="demo-form" />
+ <!-- svelte-ignore a11y_click_events_have_key_events -->
+<svelte:options customElement="demo-form-new" />
 
 <script lang="ts">
   import "medblocks-ui";
   import "medblocks-ui/dist/styles";
 
-  interface IMbForm extends Element {
-    insertContext: () => void;
-    export: () => any;
-  }
-
-  let ref: IMbForm;
-  let partVar: any;
-
-  export const mbSubmit = () => {
-    ref.insertContext();
-    return ref.export();
-  };
-
-  export const mbInput = () => {};
-
+  let form: any;
   let selectedPart = "";
 
   function selectPart(part: string) {
     selectedPart = part;
-    partVar.data = part;
   }
+  export const mbValidate = () => {
+    return true;
+  };
+  export const mbSubmit = () => {
+    return form.export();
+  };
 </script>
 
 <main>
-
-  <div style="margin: 20px auto; text-align: center;">
+  <div style="width: 80%; margin-left: auto; margin-right: auto;">
     <svg width="150" height="400">
       <!-- Head -->
 
@@ -43,6 +34,8 @@
         style="cursor:pointer;"
       />
       <!-- Torso -->
+
+      
       <rect
         x="50"
         y="65"
@@ -103,23 +96,28 @@
         style="cursor:pointer;"
       />
     </svg>
-  </div>
 
-  <mb-form
-    bind:this={ref}
-    style="width: 80%; margin-left: auto; margin-right: auto; padding-top: 25px"
-  >
+    <mb-form bind:this={form} >
     <mb-context path="mini-encounter-test-1/context/start_time"></mb-context>
     <mb-context path="mini-encounter-test-1/context/setting"></mb-context>
     <mb-input
       path="mini-encounter-test-1/problem_diagnosis/problem_diagnosis_name"
       label="Problem/Diagnosis name"
     ></mb-input>
-    <mb-input
-      bind:this={partVar}
+    <mb-buttons
       path="mini-encounter-test-1/problem_diagnosis/body_site"
       label="Body site"
-    ></mb-input>
+      terminology="local_terms"
+      data={{ code: selectedPart, value: selectedPart, terminology: "local_terms" }}
+    >
+      <mb-option value="Head" label="Head"></mb-option>
+      <mb-option value="Torso" label="Torso"></mb-option>
+      <mb-option value="Left Arm" label="Left Arm"></mb-option>
+      <mb-option value="Right Arm" label="Right Arm"></mb-option>
+      <mb-option value="Abdomen" label="Abdomen"></mb-option>
+      <mb-option value="Left Leg" label="Left Leg"></mb-option>
+      <mb-option value="Right Leg" label="Right Leg"></mb-option>
+    </mb-buttons>
     <mb-context path="mini-encounter-test-1/problem_diagnosis/language"
     ></mb-context>
     <mb-context path="mini-encounter-test-1/problem_diagnosis/encoding"
@@ -131,7 +129,7 @@
     <mb-context path="mini-encounter-test-1/territory"></mb-context>
     <mb-context path="mini-encounter-test-1/composer"></mb-context>
   </mb-form>
-
+  </div>
 </main>
 
 <style>

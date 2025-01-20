@@ -7,7 +7,7 @@
 	let selectedPart = "";
 	export const mbConnect = (ehr: string, composition: any) => {
 		selectedPart =
-			composition["mini-encounter-test-1/problem_diagnosis/body_site"];
+			composition["demo-encounter/problem_diagnosis/body_site"];
 	};
 </script>
 

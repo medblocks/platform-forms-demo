@@ -1,3 +1,3 @@
-import Form from './Form.svelte'
+import Form from './Component.svelte'
 
 export default Form;
