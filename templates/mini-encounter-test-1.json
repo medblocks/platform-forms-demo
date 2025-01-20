@@ -1,6 +1,6 @@
 {
 	"templateId" : "mini-encounter-test-1",
-	"semVer" : "1.0.0",
+	"semVer" : "1.2.0",
 	"version" : "2.3",
 	"defaultLanguage" : "en",
 	"languages" : [ "en" ],
@@ -89,6 +89,27 @@
 			"comment" : "Coding of the name of the problem or diagnosis with a terminology is preferred, where possible."
 		  },
 		  "aqlPath" : "/content[openEHR-EHR-EVALUATION.problem_diagnosis.v1]/data[at0001]/items[at0002]/value",
+		  "inputs" : [ {
+			"type" : "TEXT"
+		  } ]
+		}, {
+		  "id" : "body_site",
+		  "name" : "Body site",
+		  "localizedName" : "Body site",
+		  "rmType" : "DV_TEXT",
+		  "nodeId" : "at0012",
+		  "min" : 0,
+		  "max" : 1,
+		  "localizedNames" : {
+			"en" : "Body site"
+		  },
+		  "localizedDescriptions" : {
+			"en" : "Identification of a simple body site for the location of the problem or diagnosis."
+		  },
+		  "annotations" : {
+			"comment" : "Coding of the name of the anatomical location with a terminology is preferred, where possible.\r\nUse this data element to record precoordinated anatomical locations. If the requirements for recording the anatomical location are determined at run-time by the application or require more complex modelling such as relative locations then use the CLUSTER.anatomical_location or CLUSTER.relative_location within the 'Structured anatomical location' SLOT in this archetype. Occurrences for this data element are unbounded to allow for clinical scenarios such as describing a rash in multiple locations but where all of the other attributes are identical. If the anatomical location is included in the Problem/diagnosis name via precoordinated codes, this data element becomes redundant."
+		  },
+		  "aqlPath" : "/content[openEHR-EHR-EVALUATION.problem_diagnosis.v1]/data[at0001]/items[at0012]/value",
 		  "inputs" : [ {
 			"type" : "TEXT"
 		  } ]
