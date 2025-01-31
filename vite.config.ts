@@ -2,28 +2,15 @@ import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js"
 
-export default defineConfig(({ mode }) => {
-  const isDev = (mode === "development")
-  const argv = process.argv
-  const componentIndex = argv.indexOf("--component")
-  const component = componentIndex !== -1 ? argv[componentIndex + 1] : null
-
-  let input = "src/dev.ts";
-  if(!isDev){
-    if(component === "form"){
-      input = "src/form.ts";
-    } else if(component === "ro"){
-      input = "src/ro.ts";
-    }
-  }
-
+export default defineConfig(({ command }) => {
+  const isProduction = command === 'build'
   return {
     build: {
       target: "esnext",
       outDir: "dist",
       minify: true,
       rollupOptions: {
-        input: "src/dev.ts",
+        input: isProduction ? "src/form.ts" : "src/dev.ts",
         output: {
           entryFileNames: "index.js",
           format: "iife",
