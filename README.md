@@ -29,7 +29,56 @@ npm run dev
 This should open the dev server in your browser.
 
 ## Building for Production
-Once your component is ready you can just use the `build` command to bundle the component with all its dependencies such as CSS into one single JS file
+Once your component is ready you can build all components registered in `src/index.ts` as self-contained JavaScript files:
+
 ```bash
-npm run build
+node ./scripts/build-all.js
 ```
+
+This will create a separate JavaScript file for each component in the `dist` directory, with all dependencies bundled in.
+
+## Build Architecture
+
+This project uses a custom build system to generate standalone web components that can be easily integrated into the Medblocks Platform:
+
+### How Multiple Component Builds Work
+
+1. **Component Registration**: All components are registered in `src/index.ts`. This file serves as the central registry for all Svelte components.
+
+2. **Build Script**: The `scripts/build-all.js` script parses the `src/index.ts` file and identifies all Svelte components that should be built.
+
+3. **Individual Builds**: For each component, the script runs a separate Vite build with the component's file path passed via an environment variable.
+
+4. **Self-Contained Output**: Each component is compiled into a standalone JavaScript file that includes all necessary code (except for external dependencies marked in `vite.config.ts`).
+
+### Adding New Components
+
+To add a new component to the build:
+
+1. Create your Svelte component with the `customElement` option:
+   ```svelte
+   <svelte:options customElement="your-component-name" />
+   ```
+
+2. Import and export your component in `src/index.ts`:
+   ```typescript
+   import YourComponent from './path/to/YourComponent.svelte';
+   
+   export { 
+     // ...existing exports...
+     YourComponent
+   };
+   ```
+
+3. Run the build script, and your component will automatically be included.
+
+### Using Built Components
+
+After building, you'll have standalone JavaScript files in the `dist` directory that can be used directly in any HTML file:
+
+```html
+<script src="path/to/dist/YourComponent.js"></script>
+<your-component-name></your-component-name>
+```
+
+The external dependencies (`medblocks-ui` and `medblocks-ui/dist/styles`) need to be included separately in your HTML if your components use them.
