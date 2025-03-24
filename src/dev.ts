@@ -1,7 +1,7 @@
 import { mount } from 'svelte'
-import Form from './Component.svelte'
+import Container from './scaffold/Container.svelte'
 
-const app = mount(Form, {
+const app = mount(Container, {
   target: document.getElementById('app')!,
 })
 
