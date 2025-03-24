@@ -22,26 +22,26 @@ let firstBuild = true;
 for (const file of buildList) {
   console.log(`\n=== Building ${file} ===`)
   const componentName = basename(file, '.svelte')
-  
+
   // Set environment variable properly
-  const env = { 
-    ...process.env, 
-    SVELTE_FILE: file 
+  const env = {
+    ...process.env,
+    SVELTE_FILE: file
   }
-  
+
   console.log(`Environment: SVELTE_FILE=${file}`)
-  
-  const result = spawnSync('npx', ['vite', 'build', '--emptyOutDir', firstBuild], {
+
+  const result = spawnSync('vite', ['build', '--emptyOutDir', firstBuild], {
     stdio: 'inherit',
     env,
     shell: true
   })
-  
+
   if (result.status !== 0) {
     console.error(`Build failed for ${file} with status ${result.status}`)
     process.exit(result.status)
   }
-  
+
   // Check if output file exists
   const outputFile = join(distDir, `${componentName}.js`)
   if (!existsSync(outputFile)) {
@@ -50,7 +50,7 @@ for (const file of buildList) {
   } else {
     console.log(`Successfully built: ${outputFile}`)
   }
-  
+
   firstBuild = false
 }
 
